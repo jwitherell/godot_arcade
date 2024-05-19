@@ -1,4 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://hgfy5ylqixoe"]
+[gd_scene load_steps=6 format=3 uid="uid://hgfy5ylqixoe"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_aolpb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_he1aw"]
+size = Vector3(2, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vgnxs"]
 resource_name = "Material"
@@ -40,15 +45,19 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ntxcm")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_he1aw"]
-size = Vector3(2.02222, 1.98346, 2.00146)
-
 [node name="player" type="CharacterBody3D"]
+script = ExtResource("1_aolpb")
 
-[node name="player_mesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("ArrayMesh_ym6qq")
-skeleton = NodePath("")
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 35.7257, 0)
+layers = 2
+shadow_enabled = true
 
 [node name="player_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00598145, 0.000579834, -0.00219727)
 shape = SubResource("BoxShape3D_he1aw")
+
+[node name="player_mesh" type="MeshInstance3D" parent="player_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598145, -0.000579834, 0.00219727)
+mesh = SubResource("ArrayMesh_ym6qq")
+skeleton = NodePath("")

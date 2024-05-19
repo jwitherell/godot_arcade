@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv3l5shgyggtt"]
+
+[ext_resource type="Script" path="res://scripts/base_level.gd" id="1_g5jwh"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yb1i3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvr4n"]
+size = Vector3(20, 0.149, 20)
+
+[node name="BaseLevel" type="Node3D"]
+script = ExtResource("1_g5jwh")
+
+[node name="floor" type="StaticBody3D" parent="."]
+
+[node name="floor_mesh" type="MeshInstance3D" parent="floor"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+layers = 3
+mesh = SubResource("PlaneMesh_yb1i3")
+skeleton = NodePath("../..")
+
+[node name="floor_collider" type="CollisionShape3D" parent="floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.075, 0)
+shape = SubResource("BoxShape3D_wvr4n")
+
+[node name="spawners" type="Node3D" parent="."]
+
+[node name="players" type="Node3D" parent="spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+
+[node name="ps1" type="Node3D" parent="spawners/players"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47944, 0, 7.51041)
+
+[node name="ps2" type="Node3D" parent="spawners/players"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47944, 0, -6.79849)
+
+[node name="ps3" type="Node3D" parent="spawners/players"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.01101, 0, 7.51041)
+
+[node name="ps4" type="Node3D" parent="spawners/players"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.01101, 0, -6.79849)
+
+[node name="enemies" type="Node3D" parent="spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="es1" type="Node3D" parent="spawners/enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81663, 0, 0)
+
+[node name="es2" type="Node3D" parent="spawners/enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0198, 0, 0)
+
+[node name="es3" type="Node3D" parent="spawners/enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.97818)
+
+[node name="es4" type="Node3D" parent="spawners/enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.87424)
