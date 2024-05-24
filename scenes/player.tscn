@@ -48,11 +48,6 @@ shadow_mesh = SubResource("ArrayMesh_ntxcm")
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_aolpb")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 35.7257, 0)
-layers = 2
-shadow_enabled = true
-
 [node name="player_collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00598145, 0.000579834, -0.00219727)
 shape = SubResource("BoxShape3D_he1aw")
@@ -61,3 +56,8 @@ shape = SubResource("BoxShape3D_he1aw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598145, -0.000579834, 0.00219727)
 mesh = SubResource("ArrayMesh_ym6qq")
 skeleton = NodePath("")
+
+[node name="spotlight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 37.6671, 0)
+spot_range = 40.0317
+spot_angle = 8.7
