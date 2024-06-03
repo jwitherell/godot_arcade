@@ -36,9 +36,9 @@ func _process(delta):
 	var vvectors = [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
 	var moved = false
 	for i in player_mapping:
-		var vvector = Vector2(Input.get_joy_axis(i, 0), Input.get_joy_axis(i, 1))
+		var vvector = Input.get_vector("left" + str(i) , "right" + str(i), "up" + str(i), "down" + str(i))
 		print("joy" + str(i) + " = " + str(vvector))
-		#player_mapping[i].set_direction(vvector, delta)
+		player_mapping[i].set_direction(Vector3(-vvector.x, 0, -vvector.y), delta)
 		"""var vvector = Vector2(0, 0)
 		
 		if Input.is_joy_button_pressed(i, JOY_BUTTON_DPAD_LEFT):
