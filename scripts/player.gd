@@ -25,7 +25,7 @@ func set_material(mat):
 	
 	
 func set_direction(v, delta):
-	print("v = " + str(v))
+	#print("v = " + str(v))
 	
 	# Pessimistically set the velocity to zero
 	velocity = Vector3(0, 0, 0)

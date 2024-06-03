@@ -27,16 +27,16 @@ shape = SubResource("BoxShape3D_wvr4n")
 [node name="players" type="Node3D" parent="spawners"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 
-[node name="ps1" type="Node3D" parent="spawners/players"]
+[node name="ps1" type="Node3D" parent="spawners/players" groups=["player_spawn"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47944, 0, 7.51041)
 
-[node name="ps2" type="Node3D" parent="spawners/players"]
+[node name="ps2" type="Node3D" parent="spawners/players" groups=["player_spawn"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.47944, 0, -6.79849)
 
-[node name="ps3" type="Node3D" parent="spawners/players"]
+[node name="ps3" type="Node3D" parent="spawners/players" groups=["player_spawn"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.01101, 0, 7.51041)
 
-[node name="ps4" type="Node3D" parent="spawners/players"]
+[node name="ps4" type="Node3D" parent="spawners/players" groups=["player_spawn"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.01101, 0, -6.79849)
 
 [node name="enemies" type="Node3D" parent="spawners"]

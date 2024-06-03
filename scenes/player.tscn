@@ -46,6 +46,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ntxcm")
 
 [node name="player" type="CharacterBody3D"]
+motion_mode = 1
 script = ExtResource("1_aolpb")
 
 [node name="player_collider" type="CollisionShape3D" parent="."]
