@@ -58,6 +58,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00598145, -0.000579834, 0.
 mesh = SubResource("ArrayMesh_ym6qq")
 skeleton = NodePath("")
 
+[node name="fire_port" type="Node3D" parent="player_collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30578, 0, 0)
+
 [node name="spotlight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 37.6671, 0)
 spot_range = 40.0317

@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://bynwf2qd7b8y1"]
+
+[ext_resource type="Texture2D" uid="uid://c1824imjfeoro" path="res://ui/ui_elements/player_border_tl.png" id="1_nrvvc"]
+[ext_resource type="Texture2D" uid="uid://dg074y4704nb5" path="res://ui/ui_elements/player_border_l.png" id="1_y2wa5"]
+[ext_resource type="Texture2D" uid="uid://bl0eq71yx7kwj" path="res://ui/ui_elements/player_border_t.png" id="2_micmt"]
+[ext_resource type="Texture2D" uid="uid://codui48wwrpnj" path="res://ui/ui_elements/player_border_r.png" id="2_ofnbp"]
+[ext_resource type="Texture2D" uid="uid://dl54ojsk6bwdp" path="res://ui/ui_elements/player_border_tr.png" id="3_3xpnu"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("1_nrvvc")
+expand_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_micmt")
+expand_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("3_3xpnu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_y2wa5")
+expand_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 25)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/normal_font_size = 40
+text = "Player 1"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "3,242,193"
+fit_content = true
+scroll_active = false
+text_direction = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("2_ofnbp")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("1_y2wa5")
+expand_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer2"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("2_ofnbp")
+expand_mode = 2

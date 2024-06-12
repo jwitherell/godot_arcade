@@ -8,15 +8,53 @@ var move_direction_time: float
 # The player has to face in a direction this long before they start moving
 @export var move_time_delay:float = 0.5
 
+# The "id" of this player (0-3).  This corresponds to the gamepad ID (0 for
+# keyboard) as well as what input messages this player looks for (ex. "left2")
+# This value is set by the set_player_id method here and this method is called
+# from the player_manager script
+var player_id = null
+
 # If this is ever set to non-null, it indicates that the player should have this material
 # set as their main material (it will then be set to null)
 var desired_material:StandardMaterial3D = null
 
 func _start():
 	move_direction = Vector3(0, 0, 0)
+	
+func _process(delta):
+	# See if we need to update our material
+	if desired_material != null:
+		set_material(desired_material)
+		desired_material = null
+		
+	# Check for input events (assuming the player_id has been set)
+	if player_id != null:
+		var vvector = Input.get_vector("left" + str(player_id) , 
+									   "right" + str(player_id), 
+									   "up" + str(player_id), 
+									   "down" + str(player_id))
+		set_direction(Vector3(-vvector.x, 0, -vvector.y), delta)
+		
+		if Input.is_action_just_pressed("fire" + str(player_id)):
+			fire("single")
 
 func _physics_process(delta):
 	move_and_slide()
+
+
+func fire(attack_name):
+	if attack_name == "single":
+		print("pew")
+		var new_bullet = SceneManager.basic_bullet.instantiate()
+		add_child(new_bullet)
+		new_bullet.global_position = $player_collider/fire_port.global_position
+		new_bullet.global_rotation = $player_collider/fire_port.global_rotation
+		var my_mat = $player_collider/player_mesh.get_surface_override_material(0)
+		new_bullet.get_node("bullet_collider/bullet_mesh").set_surface_override_material(0, my_mat)
+
+
+func set_player_id(id):
+	player_id = id
 
 func set_material(mat):
 	$player_collider/player_mesh.set_surface_override_material(0, mat)
@@ -64,8 +102,5 @@ func set_direction(v, delta):
 	#	move_direction = v
 	#	move_direction_time = 0.0
 		
-func _process(delta):
-	if desired_material != null:
-		set_material(desired_material)
-		desired_material = null
+
 		

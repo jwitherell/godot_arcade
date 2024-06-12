@@ -1,0 +1,159 @@
+[gd_scene load_steps=9 format=3 uid="uid://cb4g3am0gwbpm"]
+
+[ext_resource type="Texture2D" uid="uid://uh6sgx606m6a" path="res://ui/ui_elements/player_border.png" id="1_08mu7"]
+[ext_resource type="Script" path="res://scripts/player_ui_statblock.gd" id="1_tly7k"]
+[ext_resource type="Texture2D" uid="uid://lq81xyb12lmu" path="res://ui/ui_elements/health_icon.png" id="2_kbrxn"]
+[ext_resource type="Texture2D" uid="uid://lndv1gf4m5hk" path="res://ui/ui_elements/shield_icon.png" id="3_a0nld"]
+[ext_resource type="Texture2D" uid="uid://dv2dpoqptd553" path="res://ui/ui_elements/person_icon.png" id="4_55xba"]
+[ext_resource type="Texture2D" uid="uid://ypf7vypsc58f" path="res://ui/ui_elements/coin.png" id="5_jm4nw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsais"]
+bg_color = Color(0.6, 0.6, 0.6, 0.658824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8bx1p"]
+resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
+
+[node name="player_stats" type="Control"]
+custom_minimum_size = Vector2(288, 129)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -864.0
+offset_bottom = -519.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tly7k")
+
+[node name="border_img" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_08mu7")
+expand_mode = 1
+
+[node name="player_name" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+offset_left = 11.0
+offset_top = 6.0
+offset_right = 161.0
+offset_bottom = 46.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Player 1"
+
+[node name="x1" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+offset_left = 82.0
+offset_top = 91.0
+offset_right = 232.0
+offset_bottom = 131.0
+text = "x"
+
+[node name="x2" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+offset_left = 194.0
+offset_top = 91.0
+offset_right = 344.0
+offset_bottom = 131.0
+text = "x"
+
+[node name="num_lives" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+offset_left = 98.0
+offset_top = 91.0
+offset_right = 248.0
+offset_bottom = 131.0
+text = "4"
+
+[node name="num_coins" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+offset_left = 211.0
+offset_top = 91.0
+offset_right = 361.0
+offset_bottom = 131.0
+text = "1"
+
+[node name="score" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 7.0
+offset_bottom = 47.0
+grow_horizontal = 0
+text = "3,242,193"
+
+[node name="health_icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 33.0
+offset_right = 46.0
+offset_bottom = 61.0
+texture = ExtResource("2_kbrxn")
+expand_mode = 1
+
+[node name="health_progress" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 63.0
+offset_top = 41.0
+offset_right = 263.0
+offset_bottom = 56.0
+theme_override_constants/outline_size = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_qsais")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8bx1p")
+value = 83.0
+rounded = true
+show_percentage = false
+
+[node name="shield_icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 62.0
+offset_right = 46.0
+offset_bottom = 90.0
+texture = ExtResource("3_a0nld")
+expand_mode = 1
+
+[node name="shield_progress" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_left = 63.0
+offset_top = 69.0
+offset_right = 263.0
+offset_bottom = 84.0
+theme_override_constants/outline_size = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_qsais")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8bx1p")
+value = 83.0
+rounded = true
+show_percentage = false
+
+[node name="life_icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 91.0
+offset_right = 78.0
+offset_bottom = 119.0
+texture = ExtResource("4_55xba")
+expand_mode = 1
+
+[node name="coin_icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 91.0
+offset_right = 190.0
+offset_bottom = 119.0
+texture = ExtResource("5_jm4nw")
+expand_mode = 1

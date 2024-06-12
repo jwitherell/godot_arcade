@@ -15,6 +15,11 @@ func _ready():
 	# Connect ourselves to the Input signal that is emitted when a gamepad is plugged in / out
 	Input.connect("joy_connection_changed", joy_connection_handler)
 	
+func get_player_material_colors():
+	var clist = []
+	for pm in player_materials:
+		clist.append(pm.albedo_color)
+	return clist
 	
 
 ## Searches for a new spawn point, which is furthest from all active players
@@ -29,36 +34,18 @@ func _process(delta):
 		# We don't have a player object yet
 		print("test")
 		spawn_player_if_necessary(0)
-	
-	# Ideally, I would've done input bindings.  But dpad button events seem to 
-	# only be generated for *all* devices.  This lets me distinguish which
-	# defice generated it
-	var vvectors = [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
-	var moved = false
-	for i in player_mapping:
-		var vvector = Input.get_vector("left" + str(i) , "right" + str(i), "up" + str(i), "down" + str(i))
-		print("joy" + str(i) + " = " + str(vvector))
-		player_mapping[i].set_direction(Vector3(-vvector.x, 0, -vvector.y), delta)
-		"""var vvector = Vector2(0, 0)
-		
-		if Input.is_joy_button_pressed(i, JOY_BUTTON_DPAD_LEFT):
-			vvector.x -= 1
-			moved = true
-		if Input.is_joy_button_pressed(i, JOY_BUTTON_DPAD_RIGHT):
-			vvector.x += 1
-			moved = true
-		if Input.is_joy_button_pressed(i, JOY_BUTTON_DPAD_UP):
-			vvector.y -= 1
-			moved = true
-		if Input.is_joy_button_pressed(i, JOY_BUTTON_DPAD_DOWN):
-			vvector.y += 1
-			moved = true
+
+func _unhandled_input(event):
+	if event is InputEventJoypadButton:
+		print("joypad button" + str(event.button_index) + "=" + str(event.pressed))
 			
-		if i == 0 and not moved:
-			vvector.x = Input.get_axis("left", "right")
-			vvector.y = Input.get_axis("up","down")
-			
-		player_mapping[i].set_direction(Vector3(vvector.x, 0, vvector.y), delta)
+	"""for i in player_mapping:
+		for j in [JOY_BUTTON_A, JOY_BUTTON_B, JOY_BUTTON_BACK, JOY_BUTTON_DPAD_DOWN,
+		JOY_BUTTON_DPAD_LEFT, JOY_BUTTON_DPAD_RIGHT, JOY_BUTTON_GUIDE, JOY_BUTTON_LEFT_SHOULDER,
+		JOY_BUTTON_LEFT_STICK, JOY_BUTTON_MAX, JOY_BUTTON_MISC1, JOY_BUTTON_PADDLE1,
+		JOY_BUTTON_PADDLE2, JOY_BUTTON_ ]
+			if Input.is_joy_button_pressed(i, j):
+				print("device" + str(i) + " pressed button" + str(j))
 	"""
 	
 func joy_connection_handler(device, connected):
@@ -81,6 +68,7 @@ func spawn_player_if_necessary(device):
 	else:
 		# Create a player bound to this gamepad
 		var new_player = player_scene.instantiate()
+		new_player.set_player_id(device)
 		add_child(new_player)
 		
 		# Get the spawn position which is furthest away from any other players
@@ -101,6 +89,7 @@ func spawn_player_if_necessary(device):
 	# gamepads connected -- make a keyboard-driven player instance for player0
 	if device == 0 and len(player_mapping) == 0:
 		var keyboard_player = player_scene.instantiate()
+		keyboard_player.set_player_id(0)
 		add_child(keyboard_player)
 		player_mapping[0] = keyboard_player
 		keyboard_player.desired_material = player_materials[0]

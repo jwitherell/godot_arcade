@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqv75pds4b66o"]
+
+[ext_resource type="Script" path="res://scripts/main_ui.gd" id="1_um6hk"]
+[ext_resource type="PackedScene" uid="uid://cb4g3am0gwbpm" path="res://ui/player_stats2.tscn" id="2_vokxe"]
+
+[node name="main_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_um6hk")
+
+[node name="bar_container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="top_status" type="HBoxContainer" parent="bar_container"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="p1stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
+layout_mode = 2
+
+[node name="p2stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
+layout_mode = 2
+
+[node name="p3stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
+layout_mode = 2
+
+[node name="p4stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="bar_container"]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+
+[node name="bottom_status" type="HBoxContainer" parent="bar_container"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2

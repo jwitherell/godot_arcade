@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq5rhawgpytil"]
+[gd_scene load_steps=10 format=3 uid="uid://dq5rhawgpytil"]
 
 [ext_resource type="PackedScene" uid="uid://bv3l5shgyggtt" path="res://levels/base_level.tscn" id="1_2tcwn"]
 [ext_resource type="Script" path="res://scripts/player_manager.gd" id="1_n30ov"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://b61kjxqep1w08" path="res://materials/player1_material.tres" id="5_i0coc"]
 [ext_resource type="Material" uid="uid://c5eqvwa2heuww" path="res://materials/player2_material.tres" id="6_evbip"]
 [ext_resource type="Material" uid="uid://by4w36ugfdcxw" path="res://materials/player3_material.tres" id="7_frukq"]
+[ext_resource type="PackedScene" uid="uid://cqv75pds4b66o" path="res://ui/main_ui.tscn" id="9_b5bqc"]
 
 [node name="world_root" type="Node3D"]
 transform = Transform3D(0.326548, 0, 0, 0, 0.146282, 0, 0, 0, 0.326548, 0, 0, 0)
@@ -33,3 +34,5 @@ transform = Transform3D(3.06234, 0, 0, 0, -1.33859e-07, 6.83613, 0, -3.06234, -5
 transform = Transform3D(3.06234, 0, 0, 0, -1.33859e-07, 6.83613, 0, -3.06234, -5.9964e-08, 0, 85.3786, 0)
 spot_range = 20.6508
 spot_angle = 15.7228
+
+[node name="main_ui" parent="." instance=ExtResource("9_b5bqc")]
