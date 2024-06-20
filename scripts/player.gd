@@ -33,7 +33,7 @@ func _process(delta):
 									   "right" + str(player_id), 
 									   "up" + str(player_id), 
 									   "down" + str(player_id))
-		set_direction(Vector3(-vvector.x, 0, -vvector.y), delta)
+		set_direction(Vector3(vvector.x, 0, vvector.y), delta)
 		
 		if Input.is_action_just_pressed("fire" + str(player_id)):
 			fire("single")

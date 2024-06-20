@@ -27,6 +27,9 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_constants/separation = 0
 
+[node name="p0stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
+layout_mode = 2
+
 [node name="p1stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
 layout_mode = 2
 
@@ -34,9 +37,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="p3stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
-layout_mode = 2
-
-[node name="p4stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="bar_container"]

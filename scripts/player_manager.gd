@@ -4,6 +4,9 @@ extends Node3D
 #  in the game).  All player instances are children of this manager object in the scene tree
 var player_mapping: Dictionary
 
+var num_coins = {0:0, 1:0, 2:0, 3:0}
+var num_lives = {0:0, 1:0, 2:0, 3:0}
+
 ## The scene to instantiate for all player objects
 @export var player_scene:PackedScene
 
@@ -30,10 +33,14 @@ func get_spawn_point():
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if len(player_mapping) == 0:
-		# We don't have a player object yet
-		print("test")
-		spawn_player_if_necessary(0)
+	for i in range(4):
+		if Input.is_action_just_pressed("coin" + str(i)):
+			num_coins
+			get_node("../main_ui").
+	#if len(player_mapping) == 0:
+	#	# We don't have a player object yet
+	#	print("test")
+	#	spawn_player_if_necessary(0)
 
 func _unhandled_input(event):
 	if event is InputEventJoypadButton:

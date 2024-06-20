@@ -13,3 +13,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func set_num_coins(index, num):
+	get_node("bar_container/top_status/p" + str(index) + "stats").set_num_coins(num)
+	
+func set_num_lives(index, num):
+	get_node("bar_container/top_status/p" + str(index) + "stats").set_num_lives(num)
