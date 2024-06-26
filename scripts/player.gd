@@ -8,6 +8,10 @@ var move_direction_time: float
 # The player has to face in a direction this long before they start moving
 @export var move_time_delay:float = 0.5
 
+var health = 100
+var main_ui: Control
+var player_manager_ref
+
 # The "id" of this player (0-3).  This corresponds to the gamepad ID (0 for
 # keyboard) as well as what input messages this player looks for (ex. "left2")
 # This value is set by the set_player_id method here and this method is called
@@ -18,8 +22,10 @@ var player_id = null
 # set as their main material (it will then be set to null)
 var desired_material:StandardMaterial3D = null
 
-func _start():
+func _ready():
 	move_direction = Vector3(0, 0, 0)
+	
+	main_ui = get_tree().root.get_node("world_root/main_ui")
 	
 func _process(delta):
 	# See if we need to update our material
@@ -35,7 +41,7 @@ func _process(delta):
 									   "down" + str(player_id))
 		set_direction(Vector3(vvector.x, 0, vvector.y), delta)
 		
-		if Input.is_action_just_pressed("fire" + str(player_id)):
+		if Input.is_action_just_pressed("fire" + str(player_id) + "a"):
 			fire("single")
 
 func _physics_process(delta):
@@ -102,5 +108,13 @@ func set_direction(v, delta):
 	#	move_direction = v
 	#	move_direction_time = 0.0
 		
-
+func take_damage(amt):
+	health -= amt
+	if health <= 0:
+		if player_manager_ref.player_lost_life(player_id):
+			health = 100
+	else:
+		main_ui.set_player_health(player_id, health)
+		$AudioStreamPlayer3D.play()
+	
 		

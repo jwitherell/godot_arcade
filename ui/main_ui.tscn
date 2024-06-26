@@ -27,18 +27,6 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="p0stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
-layout_mode = 2
-
-[node name="p1stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
-layout_mode = 2
-
-[node name="p2stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
-layout_mode = 2
-
-[node name="p3stats" parent="bar_container/top_status" instance=ExtResource("2_vokxe")]
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="bar_container"]
 custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
@@ -46,3 +34,49 @@ layout_mode = 2
 [node name="bottom_status" type="HBoxContainer" parent="bar_container"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+
+[node name="p0stats" parent="." instance=ExtResource("2_vokxe")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_left = 4.0
+offset_top = -177.0
+offset_right = 292.0
+offset_bottom = -48.0
+grow_horizontal = 1
+grow_vertical = 0
+
+[node name="p1stats" parent="." instance=ExtResource("2_vokxe")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 2.0
+offset_top = 122.0
+offset_right = 290.0
+offset_bottom = 251.0
+
+[node name="p2stats" parent="." instance=ExtResource("2_vokxe")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -288.0
+offset_top = 148.0
+offset_right = 0.0
+offset_bottom = 277.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="p3stats" parent="." instance=ExtResource("2_vokxe")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -284.0
+offset_top = -171.0
+offset_right = 4.0
+offset_bottom = -42.0
+grow_horizontal = 0
+grow_vertical = 0

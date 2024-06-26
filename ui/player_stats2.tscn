@@ -83,7 +83,7 @@ offset_left = 98.0
 offset_top = 91.0
 offset_right = 248.0
 offset_bottom = 131.0
-text = "4"
+text = "0"
 
 [node name="num_coins" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(150, 0)
@@ -92,7 +92,7 @@ offset_left = 211.0
 offset_top = 91.0
 offset_right = 361.0
 offset_bottom = 131.0
-text = "1"
+text = "0"
 
 [node name="score" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(150, 0)

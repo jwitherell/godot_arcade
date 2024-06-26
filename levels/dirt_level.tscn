@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn82t0372pic7"]
+
+[ext_resource type="PackedScene" uid="uid://bv3l5shgyggtt" path="res://levels/base_level.tscn" id="1_b8q1h"]
+[ext_resource type="PackedScene" uid="uid://dc3v8x3l5da63" path="res://meshes/test_block.glb" id="2_nqa18"]
+[ext_resource type="PackedScene" uid="uid://qdx2hift45y6" path="res://levels/dirt_level_environment.glb" id="3_fklyw"]
+
+[node name="DirtLevel" instance=ExtResource("1_b8q1h")]
+
+[node name="test_block" parent="." index="2" instance=ExtResource("2_nqa18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36664, 0, 11.0294)
+
+[node name="test_block2" parent="." index="3" instance=ExtResource("2_nqa18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36664, 0, -11.2454)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, -0.268752, 0.96321, 0, -0.96321, -0.268752, 0, 5.69666, 0)
+shadow_enabled = true
+
+[node name="dirt_level_environment" parent="." index="5" instance=ExtResource("3_fklyw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.969313, -0.000499919, 1.88232)

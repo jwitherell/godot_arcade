@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkq4h4q7x21qu"
+path="res://.godot/imported/8Bit - Rally Loop.wav-a92fa4c908c729d2086bc0f63af741c8.sample"
+
+[deps]
+
+source_file="res://music/8Bit - Rally Loop.wav"
+dest_files=["res://.godot/imported/8Bit - Rally Loop.wav-a92fa4c908c729d2086bc0f63af741c8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

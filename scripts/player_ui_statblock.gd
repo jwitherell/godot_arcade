@@ -8,6 +8,8 @@ var desired_health = MAX_HEALTH
 var displayed_shields = MAX_SHIELDS
 var desired_shields = MAX_SHIELDS
 
+var active = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$health_progress.max_value = MAX_HEALTH
@@ -23,7 +25,15 @@ func _process(delta):
 	pass
 
 
-func change_color(col):
+func change_color(col=null):
+	if col == null:
+		col = $border_img.modulate
+		
+	if active:
+		col.a = 1.0
+	else:
+		col.a = 0.4
+	
 	# Change the image-type color modulations
 	$border_img.modulate = col
 	$health_icon.modulate = col
@@ -64,14 +74,17 @@ func set_shields(new_desired):
 	$shield_progress.value = new_desired
 	
 func set_active(is_active):
+	active = is_active
+	
+	print("setting to " + str(is_active))
 	$player_name.visible = is_active
 	$score.visible = is_active
 	$health_icon.visible = is_active
 	$health_progress.visible = is_active
 	$shield_icon.visible = is_active
 	$shield_progress.visible = is_active
-	$life_icon.visible = is_active
-	$coin_icon.visible = is_active
 	$game_over.visible = not is_active
+	
+	change_color()
 	
 	

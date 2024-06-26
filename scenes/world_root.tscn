@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dq5rhawgpytil"]
+[gd_scene load_steps=11 format=3 uid="uid://dq5rhawgpytil"]
 
-[ext_resource type="PackedScene" uid="uid://bv3l5shgyggtt" path="res://levels/base_level.tscn" id="1_2tcwn"]
+[ext_resource type="PackedScene" uid="uid://bn82t0372pic7" path="res://levels/dirt_level.tscn" id="1_3h5b7"]
 [ext_resource type="Script" path="res://scripts/player_manager.gd" id="1_n30ov"]
 [ext_resource type="PackedScene" uid="uid://hgfy5ylqixoe" path="res://scenes/player.tscn" id="2_thm7w"]
 [ext_resource type="Script" path="res://scripts/bullet_manager.gd" id="3_ohacg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://c5eqvwa2heuww" path="res://materials/player2_material.tres" id="6_evbip"]
 [ext_resource type="Material" uid="uid://by4w36ugfdcxw" path="res://materials/player3_material.tres" id="7_frukq"]
 [ext_resource type="PackedScene" uid="uid://cqv75pds4b66o" path="res://ui/main_ui.tscn" id="9_b5bqc"]
+[ext_resource type="AudioStream" uid="uid://bkq4h4q7x21qu" path="res://music/8Bit - Rally Loop.wav" id="10_x1lam"]
 
 [node name="world_root" type="Node3D"]
 transform = Transform3D(0.326548, 0, 0, 0, 0.146282, 0, 0, 0, 0.326548, 0, 0, 0)
@@ -17,12 +18,13 @@ transform = Transform3D(0.326548, 0, 0, 0, 0.146282, 0, 0, 0, 0.326548, 0, 0, 0)
 
 [node name="level_manager" type="Node3D" parent="."]
 
-[node name="BaseLevel" parent="level_manager" instance=ExtResource("1_2tcwn")]
+[node name="DirtLevel" parent="level_manager" instance=ExtResource("1_3h5b7")]
 
-[node name="player_manager" type="Node3D" parent="."]
+[node name="player_manager" type="Node3D" parent="." node_paths=PackedStringArray("ui_node")]
 script = ExtResource("1_n30ov")
 player_scene = ExtResource("2_thm7w")
-player_materials = Array[StandardMaterial3D]([ExtResource("4_i8f4v"), ExtResource("5_i0coc"), ExtResource("6_evbip"), ExtResource("7_frukq")])
+player_materials = Array[StandardMaterial3D]([ExtResource("6_evbip"), ExtResource("7_frukq"), ExtResource("4_i8f4v"), ExtResource("5_i0coc")])
+ui_node = NodePath("../main_ui")
 
 [node name="bullet_manager" type="Node3D" parent="."]
 script = ExtResource("3_ohacg")
@@ -36,3 +38,7 @@ spot_range = 20.6508
 spot_angle = 15.7228
 
 [node name="main_ui" parent="." instance=ExtResource("9_b5bqc")]
+
+[node name="main_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_x1lam")
+autoplay = true

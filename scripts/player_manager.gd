@@ -7,16 +7,24 @@ var player_mapping: Dictionary
 var num_coins = {0:0, 1:0, 2:0, 3:0}
 var num_lives = {0:0, 1:0, 2:0, 3:0}
 
+const LIVES_PER_COIN = 3
+
 ## The scene to instantiate for all player objects
 @export var player_scene:PackedScene
 
 ## An array of player materials to use for each player
 @export var player_materials:Array[StandardMaterial3D]
 
+# The ui scene
+@export var ui_node: Control
+
 ## Called when the node enters the scene tree for the first time.
 func _ready():
 	# Connect ourselves to the Input signal that is emitted when a gamepad is plugged in / out
 	Input.connect("joy_connection_changed", joy_connection_handler)
+	
+	# Get the ui scene node (now I'm getting it Unity-style)
+	#ui_node = get_node("../main_ui")
 	
 func get_player_material_colors():
 	var clist = []
@@ -35,16 +43,33 @@ func get_spawn_point():
 func _process(delta):
 	for i in range(4):
 		if Input.is_action_just_pressed("coin" + str(i)):
-			num_coins
-			get_node("../main_ui").
+			num_coins[i] += 1
+			ui_node.set_num_coins(i, num_coins[i])
+		if Input.is_action_just_pressed("start" + str(i)) and num_coins[i] > 0:
+			# Consume a coin and update ui
+			num_coins[i] -= 1
+			ui_node.set_num_coins(i, num_coins[i])
+			
+			# Note if the player was already alive and add extra lives
+			var was_active = num_lives[i] > 0
+			num_lives[i] += LIVES_PER_COIN
+			ui_node.set_num_lives(i, num_lives[i])
+			
+			# See if we need to active the ui for that player that just
+			# joined the game
+			if not was_active:
+				# Mental note: when the player runs out of lives, we'll
+				# need the inverse of this line
+				ui_node.set_playerstats_active(i, true)
+				spawn_player_if_necessary(i)
 	#if len(player_mapping) == 0:
 	#	# We don't have a player object yet
 	#	print("test")
 	#	spawn_player_if_necessary(0)
 
-func _unhandled_input(event):
-	if event is InputEventJoypadButton:
-		print("joypad button" + str(event.button_index) + "=" + str(event.pressed))
+#func _unhandled_input(event):
+#	if event is InputEventJoypadButton:
+#		print("joypad button" + str(event.button_index) + "=" + str(event.pressed))
 			
 	"""for i in player_mapping:
 		for j in [JOY_BUTTON_A, JOY_BUTTON_B, JOY_BUTTON_BACK, JOY_BUTTON_DPAD_DOWN,
@@ -64,7 +89,7 @@ func joy_connection_handler(device, connected):
 		msg += " guid='" + str(Input.get_joy_guid(device)) + "'"
 		print(msg)
 		
-		spawn_player_if_necessary(device)
+		#spawn_player_if_necessary(device)
 		
 		
 func spawn_player_if_necessary(device):
@@ -80,6 +105,7 @@ func spawn_player_if_necessary(device):
 		
 		# Get the spawn position which is furthest away from any other players
 		new_player.global_position = find_player_spawn_point() 
+		new_player.player_manager_ref = self
 		
 		# Put this player in our device mapping
 		player_mapping[device] = new_player
@@ -126,5 +152,21 @@ func find_player_spawn_point():
 			best_sp = sp
 			best_dist = closest_d
 	return best_sp.global_position
-					
+	
+func player_lost_life(index):
+	num_lives[index] -= 1
+	if num_lives[index] <= 0:
+		ui_node.set_playerstats_active(index, false)
+		for i in range(get_child_count()):
+			var c = get_child(i)
+			if c.player_id == index:
+				remove_child(c)
+				c.queue_free()
+				break
+				
+		return false
+	else:
+		ui_node.set_num_lives(index, num_lives[index])
+		return true
+				
 	
