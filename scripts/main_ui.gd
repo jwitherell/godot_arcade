@@ -29,3 +29,6 @@ func set_playerstats_active(index, is_active):
 func set_player_health(index, new_amt):
 	get_node("p" + str(index) + "stats").set_health(new_amt)
 	
+func set_player_stamina(index, new_amt):
+	get_node("p" + str(index) + "stats").set_stamina(new_amt)
+	

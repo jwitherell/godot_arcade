@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://hgfy5ylqixoe"]
+[gd_scene load_steps=10 format=3 uid="uid://hgfy5ylqixoe"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_aolpb"]
 [ext_resource type="AudioStream" uid="uid://8rrehhtsnbvr" path="res://audio/kenney_digital-audio/Audio/lowRandom.ogg" id="2_h5fvu"]
@@ -46,6 +46,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ntxcm")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_hw4yp"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ascop"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gwys"]
+transparency = 1
+albedo_color = Color(0.701961, 1, 1, 0.427451)
+
 [node name="player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 motion_mode = 1
@@ -70,3 +78,17 @@ spot_angle = 8.7
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_h5fvu")
+
+[node name="shield" type="Area3D" parent="."]
+monitoring = false
+
+[node name="sheild_collider" type="CollisionShape3D" parent="shield"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
+shape = SubResource("SphereShape3D_hw4yp")
+
+[node name="shield_mesh" type="MeshInstance3D" parent="shield/sheild_collider"]
+visible = false
+mesh = SubResource("SphereMesh_ascop")
+surface_material_override/0 = SubResource("StandardMaterial3D_5gwys")
+
+[connection signal="area_entered" from="shield" to="." method="_on_shield_area_entered"]

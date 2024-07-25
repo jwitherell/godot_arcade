@@ -23,7 +23,7 @@ transform = Transform3D(0.326548, 0, 0, 0, 0.146282, 0, 0, 0, 0.326548, 0, 0, 0)
 [node name="player_manager" type="Node3D" parent="." node_paths=PackedStringArray("ui_node")]
 script = ExtResource("1_n30ov")
 player_scene = ExtResource("2_thm7w")
-player_materials = Array[StandardMaterial3D]([ExtResource("6_evbip"), ExtResource("7_frukq"), ExtResource("4_i8f4v"), ExtResource("5_i0coc")])
+player_materials = Array[StandardMaterial3D]([ExtResource("6_evbip"), ExtResource("5_i0coc"), ExtResource("4_i8f4v"), ExtResource("7_frukq")])
 ui_node = NodePath("../main_ui")
 
 [node name="bullet_manager" type="Node3D" parent="."]
@@ -33,9 +33,11 @@ script = ExtResource("3_ohacg")
 transform = Transform3D(3.06234, 0, 0, 0, -1.33859e-07, 6.83613, 0, -3.06234, -5.9964e-08, 0, 36.6102, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(3.06234, 0, 0, 0, -1.33859e-07, 6.83613, 0, -3.06234, -5.9964e-08, 0, 85.3786, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 85.3786, 0)
 spot_range = 20.6508
 spot_angle = 15.7228
+
+[node name="particle_manager" type="Node3D" parent="."]
 
 [node name="main_ui" parent="." instance=ExtResource("9_b5bqc")]
 

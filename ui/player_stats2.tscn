@@ -129,7 +129,7 @@ value = 83.0
 rounded = true
 show_percentage = false
 
-[node name="shield_icon" type="TextureRect" parent="."]
+[node name="stamina_icon" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 62.0
@@ -138,7 +138,7 @@ offset_bottom = 90.0
 texture = ExtResource("3_a0nld")
 expand_mode = 1
 
-[node name="shield_progress" type="ProgressBar" parent="."]
+[node name="stamina_progress" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 0
 offset_left = 63.0

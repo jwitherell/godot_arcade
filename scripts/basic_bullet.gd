@@ -14,6 +14,6 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
-		body.take_damage(5)
+		body.take_damage(5, global_position)
 		print("hit")
 		queue_free()

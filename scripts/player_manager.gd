@@ -41,12 +41,19 @@ func get_spawn_point():
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_pressed("coin0") and Input.is_action_pressed("start0") and \
+	Input.is_action_pressed("coin3") and Input.is_action_pressed("start3"):
+		print("Quit!")
+		get_tree().quit()
+	
 	for i in range(4):
 		if Input.is_action_just_pressed("coin" + str(i)):
 			num_coins[i] += 1
 			ui_node.set_num_coins(i, num_coins[i])
+			print("coin " + str(i))
 		if Input.is_action_just_pressed("start" + str(i)) and num_coins[i] > 0:
 			# Consume a coin and update ui
+			print("start " + str(i))
 			num_coins[i] -= 1
 			ui_node.set_num_coins(i, num_coins[i])
 			

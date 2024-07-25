@@ -1,17 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cum64leeg7pnv"]
+[gd_scene load_steps=8 format=3 uid="uid://cum64leeg7pnv"]
 
 [ext_resource type="Script" path="res://scripts/basic_bullet.gd" id="1_jn2fx"]
 [ext_resource type="AudioStream" uid="uid://clrvklg25u3t" path="res://audio/kenney_digital-audio/Audio/laser5.ogg" id="2_3dqki"]
+[ext_resource type="Material" uid="uid://bkieyl1sxj41h" path="res://particle_systems/basic_hit.tres" id="3_7jk6a"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0iugf"]
 radius = 0.2
 
 [sub_resource type="SphereMesh" id="SphereMesh_8pdn4"]
 
-[node name="basic_bullet" type="Area3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnouh"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_byrmb"]
+
+[node name="basic_bullet" type="Area3D" groups=["bullet"]]
 script = ExtResource("1_jn2fx")
 
 [node name="bullet_collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 shape = SubResource("SphereShape3D_0iugf")
 
 [node name="bullet_mesh" type="MeshInstance3D" parent="bullet_collider"]
@@ -21,5 +28,16 @@ mesh = SubResource("SphereMesh_8pdn4")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_3dqki")
 autoplay = true
+
+[node name="hit_particles" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_bnouh")
+transparency = 0.26
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.85
+transform_align = 1
+process_material = ExtResource("3_7jk6a")
+draw_pass_1 = SubResource("QuadMesh_byrmb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

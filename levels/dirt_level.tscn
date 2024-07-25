@@ -1,20 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://bn82t0372pic7"]
+[gd_scene load_steps=5 format=3 uid="uid://bn82t0372pic7"]
 
 [ext_resource type="PackedScene" uid="uid://bv3l5shgyggtt" path="res://levels/base_level.tscn" id="1_b8q1h"]
-[ext_resource type="PackedScene" uid="uid://dc3v8x3l5da63" path="res://meshes/test_block.glb" id="2_nqa18"]
 [ext_resource type="PackedScene" uid="uid://qdx2hift45y6" path="res://levels/dirt_level_environment.glb" id="3_fklyw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vi7x3"]
+size = Vector3(2.0022, 2.65283, 1.99164)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ge8f3"]
+size = Vector3(0.613525, 1.10986, 4.80469)
 
 [node name="DirtLevel" instance=ExtResource("1_b8q1h")]
 
-[node name="test_block" parent="." index="2" instance=ExtResource("2_nqa18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36664, 0, 11.0294)
-
-[node name="test_block2" parent="." index="3" instance=ExtResource("2_nqa18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36664, 0, -11.2454)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="4"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, -0.268752, 0.96321, 0, -0.96321, -0.268752, 0, 5.69666, 0)
 shadow_enabled = true
 
-[node name="dirt_level_environment" parent="." index="5" instance=ExtResource("3_fklyw")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.969313, -0.000499919, 1.88232)
+[node name="dirt_level_environment" parent="." index="3" instance=ExtResource("3_fklyw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="wall_colliders" type="StaticBody3D" parent="dirt_level_environment" index="2"]
+
+[node name="inner_collider" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00354004, 0.826416, 0.00308228)
+shape = SubResource("BoxShape3D_vi7x3")
+
+[node name="right_top" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25922, 0.774455, -3.43723)
+shape = SubResource("BoxShape3D_ge8f3")
+
+[node name="top_right" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.42028, 0.774455, -5.72266)
+shape = SubResource("BoxShape3D_ge8f3")
+
+[node name="top_left" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.39353, 0.774455, -5.72266)
+shape = SubResource("BoxShape3D_ge8f3")
+
+[node name="bottom_right" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.42992, 0.774455, 5.71995)
+shape = SubResource("BoxShape3D_ge8f3")
+
+[node name="bottom_left" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.41502, 0.774455, 5.71995)
+shape = SubResource("BoxShape3D_ge8f3")
+
+[node name="right_bottom" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25922, 0.774455, 3.40898)
+shape = SubResource("BoxShape3D_ge8f3")
+
+[node name="left_top" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70428, 0.774455, -3.43723)
+shape = SubResource("BoxShape3D_ge8f3")
+
+[node name="left_bottom" type="CollisionShape3D" parent="dirt_level_environment/wall_colliders" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.70428, 0.774455, 3.41185)
+shape = SubResource("BoxShape3D_ge8f3")
